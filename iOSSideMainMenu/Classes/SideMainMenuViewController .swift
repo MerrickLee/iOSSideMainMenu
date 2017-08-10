@@ -25,10 +25,13 @@ public class SideMainMenuViewController : UIViewController {
     //IBOulets
     @IBOutlet var leftContraings: NSLayoutConstraint!
     @IBOutlet var leftMainMenu: UIView!
+    @IBOutlet var viewTap: UIView!
     
     //vars
     var mainMenuActive = false
+    var tapGesture = UITapGestureRecognizer()
     
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,7 +39,21 @@ public class SideMainMenuViewController : UIViewController {
         leftMainMenu.layer.shadowOpacity = 1
         leftMainMenu.layer.shadowRadius = 6
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(Tapped))
+        tap.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tap)
+        
+        
     }
+    
+    func Tapped() {
+        // do something cool here
+        print ("tapped")
+        closeMenu(self)
+        
+    }
+    
+    
     
     //Actions
     @IBAction func openMainMenu(_ sender: Any) {
